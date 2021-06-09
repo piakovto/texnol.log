@@ -11,49 +11,48 @@ class Kataxorisi:
                 self.typos_plir = typos_plir
                 self.katigoria = katigoria
                 self.imerominia = imerominia
-p1 = Kataxorisi("", "", "", "", "")
 
 def create_kataxor_command(typos, poso, typos_plir, kathg):
+        global p1
         p1 = Kataxorisi(typos, poso, typos_plir, kathg, datetime.datetime.now().strftime("%x %X \n"))
-        print (p1.poso_katax)
         
 def Gui_katax(x):
+        
+        def popup_epivevaiosis():
+                W_epivevaiosis = tk.Toplevel(x)
+                W_epivevaiosis.title("Επιβεβαίωση Συναλλαγής")
+                W_epivevaiosis.geometry("300x200")
+                W_epivevaiosis.resizable(width=False, height=False)
 
+                B_yes=tk.Button(W_epivevaiosis)
+                B_yes["bg"] = "#efefef"
+                ft = tkFont.Font(family='Times',size=10)
+                B_yes["font"] = ft
+                B_yes["fg"] = "#000000"
+                B_yes["justify"] = "center"
+                B_yes["text"] = "Επιβεβαίωση"
+                B_yes.place(x=20,y=130,width=80,height=25)
+                B_yes["command"] = lambda: [print(p1.poso_katax), W_epivevaiosis.destroy()]
+
+                B_no=tk.Button(W_epivevaiosis)
+                B_no["bg"] = "#efefef"
+                ft = tkFont.Font(family='Times',size=10)
+                B_no["font"] = ft
+                B_no["fg"] = "#000000"
+                B_no["justify"] = "center"
+                B_no["text"] = "Ακύρωση"
+                B_no.place(x=200,y=130,width=80,height=25)
+                B_no["command"] = lambda: [print("akyro"), W_epivevaiosis.destroy()]
+
+                popup_text=tk.Label(W_epivevaiosis)
+                ft = tkFont.Font(family='Times',size=12)
+                popup_text["font"] = ft
+                popup_text["fg"] = "#333333"
+                popup_text["justify"] = "center"
+                popup_text["text"] = "Συναλλαγή "+p1.poso_katax+" ευρώ με "+p1.typos_plir
+                popup_text.place(x=20,y=10,width=280,height=80)       
+        
         def esoda():
-                '''def create_kataxor_command():
-                        #f = open("istoriko.txt", "a")
-                        #f.write("1, ")
-                        #f.write(poso_katax_entry.get() + ", ")
-                        #f.write(Select_box_payment.get() + ", ")
-                        #x = datetime.datetime.now()
-                        #f.write(x.strftime("%x %X \n"))
-                        #f.close()
-                        p1.typos = "1"
-                        p1.poso_katax = poso_katax_entry.get()
-                        p1.typos_plir = Select_box_payment.get()
-                        p1.katigoria = ""
-                        p1.imerominia = (datetime.datetime.now().strftime("%x %X \n"))
-                        print(p1.typos)
-                        print(p1.poso_katax)
-                        print(p1.typos_plir)
-                        print(p1.katigoria)
-                        print(p1.imerominia)
-                        fl = open("qwerty", "ab")
-                        pickle.dump(p1, fl)
-                        fl.close()
-                        objects = []
-                        with (open("qwerty", "rb")) as f1:
-                            while True:
-                                try:
-                                    objects.append(pickle.load(f1))
-                                except EOFError:
-                                    break
-                        print(objects[0].poso_katax)
-                        print(objects[0].typos_plir)
-                        print(objects[1].poso_katax)
-                        print(objects[1].typos_plir)
-                        print(len(objects))       
-                        fl.close()'''
                         
                 for widget in x.winfo_children():
                               widget.destroy()
@@ -84,45 +83,10 @@ def Gui_katax(x):
                 create_kataxor["justify"] = "center"
                 create_kataxor["text"] = "Καταχώρηση"
                 create_kataxor.place(x=400,y=380,width=105,height=34)
-                create_kataxor["command"] = lambda: create_kataxor_command(1, poso_katax_entry.get(), Select_box_payment.get(), " ",)
+                create_kataxor["command"] = lambda: [create_kataxor_command(1, poso_katax_entry.get(), Select_box_payment.get(), " ",), popup_epivevaiosis()]
 
 
         def eksoda():
-                '''def create_kataxor_command():
-                        #f = open("istoriko.txt", "a")
-                        #f.write("1, ")
-                        #f.write(poso_katax_entry.get() + ", ")
-                        #f.write(Select_box_payment.get() + ", ")
-                        #x = datetime.datetime.now()
-                        #f.write(x.strftime("%x %X \n"))
-                        #f.close()
-                        p1.typos = "0"
-                        p1.poso_katax = poso_katax_entry.get()
-                        p1.typos_plir = Select_box_payment.get()
-                        p1.katigoria = Select_box_categor.get()
-                        x = datetime.datetime.now()
-                        p1.imerominia = (x.strftime("%x %X \n"))
-                        print(p1.typos)
-                        print(p1.poso_katax)
-                        print(p1.typos_plir)
-                        print(p1.katigoria)
-                        print(p1.imerominia)
-                        fl = open("qwerty", "ab")
-                        pickle.dump(p1, fl)
-                        fl.close()
-                        objects = []
-                        with (open("qwerty", "rb")) as f1:
-                            while True:
-                                try:
-                                    objects.append(pickle.load(f1))
-                                except EOFError:
-                                    break
-                        print(objects[0].poso_katax)
-                        print(objects[0].typos_plir)
-                        print(objects[1].poso_katax)
-                        print(objects[1].typos_plir)
-                        print(len(objects))       
-                        fl.close()'''
 
                 for widget in x.winfo_children():
                               widget.destroy()
@@ -159,9 +123,8 @@ def Gui_katax(x):
                 create_kataxor["justify"] = "center"
                 create_kataxor["text"] = "Καταχώρηση"
                 create_kataxor.place(x=400,y=380,width=105,height=34)
-                create_kataxor["command"] = lambda: create_kataxor_command(0, poso_katax_entry.get(), Select_box_payment.get(), Select_box_categor)
-
-
+                create_kataxor["command"] = lambda: [create_kataxor_command(0, poso_katax_entry.get(), Select_box_payment.get(), " ",), popup_epivevaiosis()]
+         
         
         def next_screen(y):
                 if (y == "Έσοδα"):
