@@ -5,6 +5,7 @@ from tkinter import *
 from istoriko import *
 from portof import *
 from kataxor import *
+from welcome_screen import *
 
 class App:
     def __init__(self, root):
@@ -20,8 +21,12 @@ class App:
         root.geometry(alignstr)
         root.resizable(width=False, height=False)
 
+        Fwelcome = Frame(root, width=950, height=625, highlightbackground="black", highlightthickness=1)
+        Fwelcome.grid(row=0,column=0,sticky="nsew")
+        Fwelcome.pack(fill=None, side='right', expand='False')
+        Fwelcome.place(x=250,y=100)
 
-
+        
         Fportof = Frame(root, width=950, height=625, highlightbackground="black", highlightthickness=1)
         Fportof.grid(row=0,column=0,sticky="nsew")
         Fportof.pack(fill=None, side='right', expand='False')
@@ -39,14 +44,13 @@ class App:
 
 
 
-        
+        welcome(Fwelcome)
+        Gui_istoriko(Fistoriko)
+        Gui_portof(Fportof)
 
 
+        Fwelcome.tkraise()
 
-
-        
-        gx(Fistoriko)
-        g(Fportof)
         
         Dapanh_but=tk.Button(root)
         Dapanh_but["bg"] = "#efefef"
@@ -77,7 +81,7 @@ class App:
         Istoriko_but["text"] = "Ιστορικό Δαπανών"
         Istoriko_but.place(x=30,y=240,width=200,height=35)
         Istoriko_but["command"] = Fistoriko.tkraise
-
+        
         Statist_but=tk.Button(root)
         Statist_but["bg"] = "#efefef"
         ft = tkFont.Font(family='Times',size=10)
@@ -160,8 +164,7 @@ class App:
         dlus_but["relief"] = "ridge"
         dlus_but.place(x=20,y=40,width=25,height=25)
         """
-
-
+    
 
     def Dapanh_but_command(self):
         f1.tkraise()
@@ -194,7 +197,12 @@ class App:
     def Plus_but_command(self):
         print("command")
 
+
+
+
+    
 if __name__ == "__main__":
     root = tk.Tk()
     app = App(root)
+    root.update_idletasks()
     root.mainloop()
