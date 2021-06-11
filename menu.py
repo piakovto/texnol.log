@@ -4,11 +4,22 @@ from tkinter import *
 
 from istoriko import *
 from portof import *
+
+
 from kataxor import *
 from welcome_screen import *
+from elegxos import *
+
+
 
 class App:
     def __init__(self, root):
+            
+
+
+        def clear_frame(x):
+            for widget in x.winfo_children():
+                              widget.destroy()
         
         #setting title
         root.title("Cheapstr")
@@ -47,7 +58,7 @@ class App:
         welcome(Fwelcome)
         Gui_istoriko(Fistoriko)
         Gui_portof(Fportof)
-
+        Gui_katax(Fdapanh)
 
         Fwelcome.tkraise()
 
@@ -60,7 +71,7 @@ class App:
         Dapanh_but["justify"] = "center"
         Dapanh_but["text"] = "Νέα Δαπάνη"
         Dapanh_but.place(x=30,y=110,width=200,height=35)
-        Dapanh_but["command"] = Fdapanh.tkraise
+        Dapanh_but["command"] = lambda:[Fdapanh.tkraise(), clear_frame(Fdapanh), Gui_katax(Fdapanh)]
 
         Apotam_but=tk.Button(root)
         Apotam_but["bg"] = "#efefef"
@@ -80,7 +91,7 @@ class App:
         Istoriko_but["justify"] = "center"
         Istoriko_but["text"] = "Ιστορικό Δαπανών"
         Istoriko_but.place(x=30,y=240,width=200,height=35)
-        Istoriko_but["command"] = Fistoriko.tkraise
+        Istoriko_but["command"] = lambda:[Fistoriko.tkraise(),clear_frame(Fistoriko), Show_istoriko(Fistoriko)]
         
         Statist_but=tk.Button(root)
         Statist_but["bg"] = "#efefef"
@@ -139,32 +150,8 @@ class App:
         Plus_but["text"] = "+"
         Plus_but["relief"] = "ridge"
         Plus_but.place(x=200,y=40,width=25,height=25)
-        Plus_but["command"] = Fportof.tkraise
+        Plus_but["command"] = lambda:[Fportof.tkraise(), clear_frame(Fportof), Gui_portof(Fportof)]
 
-        """
-        lus_but=tk.Button(f1)
-        lus_but["bg"] = "#efefef"
-        ft = tkFont.Font(family='Times',size=20)
-        lus_but["font"] = ft
-        lus_but["fg"] = "#000000"
-        lus_but["justify"] = "center"
-        lus_but["text"] = "+"
-        lus_but["relief"] = "ridge"
-        lus_but.place(x=250,y=40,width=25,height=25)
-        
-
-        
-        dlus_but=tk.Button(f2)
-        dlus_but["bg"] = "#efefef"
-        ft = tkFont.Font(family='Times',size=20)
-        dlus_but["font"] = ft
-        dlus_but["fg"] = "#000000"
-        dlus_but["justify"] = "center"
-        dlus_but["text"] = "+"
-        dlus_but["relief"] = "ridge"
-        dlus_but.place(x=20,y=40,width=25,height=25)
-        """
-    
 
     def Dapanh_but_command(self):
         f1.tkraise()
